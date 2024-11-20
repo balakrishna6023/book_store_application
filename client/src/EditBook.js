@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "./App.css";
 
-const API_URL = "http://localhost:5000/books";
+const API_URL = "https://book-store-application-server.onrender.com/books";
 
 function EditBook() {
   const [form, setForm] = useState({ title: "", author: "", description: "" });
