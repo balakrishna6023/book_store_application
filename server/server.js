@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
+const helmet = require('helmet');
 
 require("dotenv").config();
 
@@ -22,10 +23,15 @@ const bookSchema = new mongoose.Schema({
 
 const Book = mongoose.model("Book", bookSchema);
 
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "frame-ancestors 'none'");
-  next();
-});
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        frameAncestors: ["'none'"]
+      }
+    }
+  })
+);
 
 
 // Routes
