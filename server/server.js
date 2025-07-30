@@ -22,6 +22,12 @@ const bookSchema = new mongoose.Schema({
 
 const Book = mongoose.model("Book", bookSchema);
 
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "frame-ancestors 'none'");
+  next();
+});
+
+
 // Routes
 app.get("/books", async (req, res) => {
   const books = await Book.find();
